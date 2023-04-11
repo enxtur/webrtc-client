@@ -20,8 +20,8 @@ const audioConstraints = {
 function App() {
   
   const [peer, setPeer] = useState(null);
-  const [username, setUsername] = useState("");
-  const [token, setToken] = useState("mytoken");
+  const [username, setUsername] = useState("642b924b64ec50e73fba6be1");
+  const [token, setToken] = useState("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwidWlkIjoiNjQyYjkyNGI2NGVjNTBlNzNmYmE2YmUxIiwiaWF0IjoxNTE2MjM5MDIyfQ.rgSHVXwK0WhMAK_P23u10fiWiZDVCSlO0whxtaEdjZA");
   // const [messages, setMessages] = useState([]);
   // const [message, setMessage] = useState("");
   const [target, setTarget] = useState("");
@@ -31,9 +31,9 @@ function App() {
 
   const login = () => {
     setPeer(new Peer(username, {
-      host: '5607-64-119-16-123.ap.ngrok.io',
-      // port: 3000,
-      path: '/myapp',
+      host: 'dev-xs.zto.mn',
+      secure: true,
+      path: '/webrtc',
       config: {
         iceServers: [
           { url: 'stun:43.231.115.212:3478' },
@@ -109,10 +109,14 @@ function App() {
       peer.on('error', (err) => {
         console.log("peer error", err);
       });
-      peer.on('disconnected', () => {
-        console.log("peer disconnected");
+      peer.on('disconnected', (data, data2) => {
+        console.log("peer disconnected", data, data2);
         setPeerStatus(false);
       });
+      console.log("peer.socket", peer.socket);
+      peer.socket.on("disconnected", (code, reason) => {
+        console.log("websocket disconnected", code, reason);
+      })
     } else {
       setPeerStatus(false);
     }
