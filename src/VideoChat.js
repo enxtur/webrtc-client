@@ -3,5 +3,11 @@ export const VideoChat = ({ remoteStream }) => {
     return null;
   }
   // remoteStream.getTracks().forEach(track => track.stop());
-  return <video ref={(video) => { video.srcObject = remoteStream; }} autoPlay />
+  return <video ref={(video) => {
+    if (video) {
+      if (!video.srcObject) {
+        video.srcObject = remoteStream;
+      }
+    }
+  }} autoPlay />
 }

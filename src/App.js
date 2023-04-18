@@ -31,8 +31,10 @@ function App() {
 
   const login = () => {
     setPeer(new Peer(username, {
-      host: 'dev-xs.zto.mn',
-      secure: true,
+      // host: 'dev-xs.zto.mn',
+      host: "127.0.0.1",
+      port: 30984,
+      // secure: true,
       path: '/webrtc',
       config: {
         iceServers: [
