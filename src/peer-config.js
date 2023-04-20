@@ -1,5 +1,5 @@
 export const peerConfig = {
-  host: "025b-66-181-186-221.ngrok-free.app",
+  host: "dev-xs.zto.mn",
   secure: true,
   // host: "127.0.0.1",
   // port: 3000,
